@@ -1,0 +1,61 @@
+
+entity Student {
+	firstName String
+    lastName String
+}
+
+entity Degree {
+	nameDipl String
+}
+
+entity Assessment {
+    date LocalDate
+    coefCont Integer min(1) max(5)
+    type TypeAssessment
+}
+
+entity Subject{
+    nameMat String
+    coefMat Integer min(1) max(5)
+}
+
+entity Get {
+	note Float required min(0) max(20)
+}
+
+enum TypeAssessment {
+	CE (comprehensionEcrite),
+    CO (comprehensionOrale),
+    EE (expressionEcrite),
+    EO (expressionOrale)
+}
+
+/** 
+* Entity Obtient
+*/
+relationship OneToMany{
+    Assessment{get} to Get{assessment (date) required}, 
+    Student{get} to Get{student (firstName) required}
+}
+
+/** 
+* Others
+*/
+relationship OneToMany{
+	Subject{assessment} to Assessment{subject (nameMat) required},
+   	Degree{student} to Student{degree (nameDipl) required},
+    Degree{subject} to Subject{degree (nameDipl) required}
+}
+
+// Set pagination options
+paginate Student, Subject with infinite-scroll
+paginate Assessment with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Get
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
