@@ -1,0 +1,47 @@
+{
+  "name": "Assessment",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "coefCont",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMin": "1",
+      "fieldValidateRulesMax": "5"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeAssessment",
+      "fieldValues": "CE (comprehensionEcrite),CO (comprehensionOrale),EE (expressionEcrite),EO (expressionOrale)"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "get",
+      "otherEntityRelationshipName": "assessment",
+      "relationshipName": "get"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "subject",
+      "otherEntityRelationshipName": "assessment",
+      "relationshipValidateRules": "required",
+      "relationshipName": "subject",
+      "otherEntityField": "nameMat"
+    }
+  ],
+  "entityTableName": "assessment",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210630150644"
+}

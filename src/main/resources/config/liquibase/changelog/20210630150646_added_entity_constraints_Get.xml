@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Get.
+    -->
+    <changeSet id="20210630150646-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="assessment_id"
+                                 baseTableName="get"
+                                 constraintName="fk_get__assessment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="assessment"/>
+
+        <addForeignKeyConstraint baseColumnNames="student_id"
+                                 baseTableName="get"
+                                 constraintName="fk_get__student_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="student"/>
+    </changeSet>
+</databaseChangeLog>

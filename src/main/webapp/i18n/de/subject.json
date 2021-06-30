@@ -1,0 +1,27 @@
+{
+  "notationApp": {
+    "subject": {
+      "home": {
+        "title": "Subjects",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Subject erstellen",
+        "createOrEditLabel": "Subject erstellen oder bearbeiten",
+        "notFound": "Keine Subjects gefunden"
+      },
+      "created": "Subject erstellt mit ID {{ param }}",
+      "updated": "Subject aktualisiert mit ID {{ param }}",
+      "deleted": "Subject gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Subject {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Subject"
+      },
+      "id": "ID",
+      "nameMat": "Name Mat",
+      "coefMat": "Coef Mat",
+      "assessment": "Assessment",
+      "degree": "Degree"
+    }
+  }
+}

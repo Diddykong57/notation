@@ -1,0 +1,26 @@
+{
+  "notationApp": {
+    "get": {
+      "home": {
+        "title": "Gets",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Get erstellen",
+        "createOrEditLabel": "Get erstellen oder bearbeiten",
+        "notFound": "Keine Gets gefunden"
+      },
+      "created": "Get erstellt mit ID {{ param }}",
+      "updated": "Get aktualisiert mit ID {{ param }}",
+      "deleted": "Get gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Get {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Get"
+      },
+      "id": "ID",
+      "note": "Note",
+      "assessment": "Assessment",
+      "student": "Student"
+    }
+  }
+}

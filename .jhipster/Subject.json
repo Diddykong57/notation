@@ -1,0 +1,42 @@
+{
+  "name": "Subject",
+  "fields": [
+    {
+      "fieldName": "nameMat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "coefMat",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMin": "1",
+      "fieldValidateRulesMax": "5"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "assessment",
+      "otherEntityRelationshipName": "subject",
+      "relationshipName": "assessment"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "degree",
+      "otherEntityRelationshipName": "subject",
+      "relationshipValidateRules": "required",
+      "relationshipName": "degree",
+      "otherEntityField": "nameDipl"
+    }
+  ],
+  "entityTableName": "subject",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210630150645"
+}

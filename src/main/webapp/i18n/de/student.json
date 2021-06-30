@@ -1,0 +1,27 @@
+{
+  "notationApp": {
+    "student": {
+      "home": {
+        "title": "Students",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Student erstellen",
+        "createOrEditLabel": "Student erstellen oder bearbeiten",
+        "notFound": "Keine Students gefunden"
+      },
+      "created": "Student erstellt mit ID {{ param }}",
+      "updated": "Student aktualisiert mit ID {{ param }}",
+      "deleted": "Student gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Student {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Student"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "get": "Get",
+      "degree": "Degree"
+    }
+  }
+}
