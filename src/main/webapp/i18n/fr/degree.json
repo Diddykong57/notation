@@ -1,0 +1,26 @@
+{
+  "notationApp": {
+    "degree": {
+      "home": {
+        "title": "Degrees",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Degree",
+        "createOrEditLabel": "Créer ou éditer un Degree",
+        "notFound": "Aucun Degree trouvé"
+      },
+      "created": "Un nouveau Degree a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Degree avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Degree avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Degree {{ id }} ?"
+      },
+      "detail": {
+        "title": "Degree"
+      },
+      "id": "ID",
+      "nameDipl": "Name Dipl",
+      "student": "Student",
+      "subject": "Subject"
+    }
+  }
+}

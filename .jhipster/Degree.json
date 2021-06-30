@@ -1,0 +1,33 @@
+{
+  "name": "Degree",
+  "fields": [
+    {
+      "fieldName": "nameDipl",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "degree",
+      "relationshipName": "student"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "subject",
+      "otherEntityRelationshipName": "degree",
+      "relationshipName": "subject"
+    }
+  ],
+  "entityTableName": "degree",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210630150643"
+}

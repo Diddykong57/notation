@@ -1,0 +1,28 @@
+{
+  "notationApp": {
+    "assessment": {
+      "home": {
+        "title": "Assessments",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Assessment",
+        "createOrEditLabel": "Créer ou éditer un Assessment",
+        "notFound": "Aucun Assessment trouvé"
+      },
+      "created": "Un nouveau Assessment a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Assessment avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Assessment avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Assessment {{ id }} ?"
+      },
+      "detail": {
+        "title": "Assessment"
+      },
+      "id": "ID",
+      "date": "Date",
+      "coefCont": "Coef Cont",
+      "type": "Type",
+      "get": "Get",
+      "subject": "Subject"
+    }
+  }
+}

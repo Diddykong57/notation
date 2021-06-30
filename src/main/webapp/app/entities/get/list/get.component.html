@@ -1,0 +1,80 @@
+<div>
+  <h2 id="page-heading" data-cy="GetHeading">
+    <span jhiTranslate="notationApp.get.home.title">Gets</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="notationApp.get.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-get"
+        [routerLink]="['/get/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="notationApp.get.home.createLabel"> Create a new Get </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="gets?.length === 0">
+    <span jhiTranslate="notationApp.get.home.notFound">No gets found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="gets && gets.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="notationApp.get.note">Note</span></th>
+          <th scope="col"><span jhiTranslate="notationApp.get.assessment">Assessment</span></th>
+          <th scope="col"><span jhiTranslate="notationApp.get.student">Student</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let get of gets; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/get', get.id, 'view']">{{ get.id }}</a>
+          </td>
+          <td>{{ get.note }}</td>
+          <td>
+            <div *ngIf="get.assessment">
+              <a [routerLink]="['/assessment', get.assessment?.id, 'view']">{{ get.assessment?.date }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="get.student">
+              <a [routerLink]="['/student', get.student?.id, 'view']">{{ get.student?.firstName }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/get', get.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/get', get.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(get)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

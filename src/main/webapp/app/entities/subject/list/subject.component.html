@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="SubjectHeading">
+    <span jhiTranslate="notationApp.subject.home.title">Subjects</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="notationApp.subject.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-subject"
+        [routerLink]="['/subject/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="notationApp.subject.home.createLabel"> Create a new Subject </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="subjects?.length === 0">
+    <span jhiTranslate="notationApp.subject.home.notFound">No subjects found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="subjects && subjects.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nameMat">
+            <span jhiTranslate="notationApp.subject.nameMat">Name Mat</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="coefMat">
+            <span jhiTranslate="notationApp.subject.coefMat">Coef Mat</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="degree.nameDipl">
+            <span jhiTranslate="notationApp.subject.degree">Degree</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let subject of subjects; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/subject', subject.id, 'view']">{{ subject.id }}</a>
+          </td>
+          <td>{{ subject.nameMat }}</td>
+          <td>{{ subject.coefMat }}</td>
+          <td>
+            <div *ngIf="subject.degree">
+              <a [routerLink]="['/degree', subject.degree?.id, 'view']">{{ subject.degree?.nameDipl }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/subject', subject.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/subject', subject.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(subject)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

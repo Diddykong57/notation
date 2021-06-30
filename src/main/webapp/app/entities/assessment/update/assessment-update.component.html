@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-assessment-heading" data-cy="AssessmentCreateUpdateHeading" jhiTranslate="notationApp.assessment.home.createOrEditLabel">
+        Create or edit a Assessment
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="notationApp.assessment.date" for="field_date">Date</label>
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="notationApp.assessment.coefCont" for="field_coefCont">Coef Cont</label>
+          <input type="number" class="form-control" name="coefCont" id="field_coefCont" data-cy="coefCont" formControlName="coefCont" />
+          <div *ngIf="editForm.get('coefCont')!.invalid && (editForm.get('coefCont')!.dirty || editForm.get('coefCont')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('coefCont')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              This field should be at least 1.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('coefCont')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be more than 5.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('coefCont')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="notationApp.assessment.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'notationApp.TypeAssessment.null' | translate }}</option>
+            <option value="CE">{{ 'notationApp.TypeAssessment.CE' | translate }}</option>
+            <option value="CO">{{ 'notationApp.TypeAssessment.CO' | translate }}</option>
+            <option value="EE">{{ 'notationApp.TypeAssessment.EE' | translate }}</option>
+            <option value="EO">{{ 'notationApp.TypeAssessment.EO' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="notationApp.assessment.subject" for="field_subject">Subject</label>
+          <select class="form-control" id="field_subject" data-cy="subject" name="subject" formControlName="subject">
+            <option *ngIf="!editForm.get('subject')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="subjectOption.id === editForm.get('subject')!.value?.id ? editForm.get('subject')!.value : subjectOption"
+              *ngFor="let subjectOption of subjectsSharedCollection; trackBy: trackSubjectById"
+            >
+              {{ subjectOption.nameMat }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['subject'])!.invalid && (editForm.get(['subject'])!.dirty || editForm.get(['subject'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['subject'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

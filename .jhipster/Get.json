@@ -1,0 +1,40 @@
+{
+  "name": "Get",
+  "fields": [
+    {
+      "fieldName": "note",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMin": "0",
+      "fieldValidateRulesMax": "20"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "assessment",
+      "otherEntityRelationshipName": "get",
+      "relationshipValidateRules": "required",
+      "relationshipName": "assessment",
+      "otherEntityField": "date"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "get",
+      "relationshipValidateRules": "required",
+      "relationshipName": "student",
+      "otherEntityField": "firstName"
+    }
+  ],
+  "entityTableName": "get",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210630150646"
+}

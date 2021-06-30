@@ -1,0 +1,39 @@
+{
+  "name": "Student",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "get",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "get"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "degree",
+      "otherEntityRelationshipName": "student",
+      "relationshipValidateRules": "required",
+      "relationshipName": "degree",
+      "otherEntityField": "nameDipl"
+    }
+  ],
+  "entityTableName": "student",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210630150642"
+}

@@ -42,6 +42,8 @@
     "devServerPort": 4200,
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["en", "fr", "de"]
+    "languages": ["en", "fr", "de"],
+    "entities": ["Student", "Degree", "Assessment", "Subject", "Get"],
+    "lastLiquibaseTimestamp": 1625065606000
   }
 }
